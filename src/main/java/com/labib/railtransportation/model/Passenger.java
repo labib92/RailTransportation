@@ -1,14 +1,15 @@
 package com.labib.railtransportation.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-@Entity
+@Embeddable
 public class Passenger {
     @Id
     @GeneratedValue
+    @Column(name = "id_PK")
     private int id;
 
     @Column
@@ -17,18 +18,16 @@ public class Passenger {
     @Column
     private String surname;
 
-    @Column(name = "date_of_birth")
-    private int dateOfBirth;
+    @Column
+    private Date dateOfBirth;
+
 
     public Passenger(){}
 
-    public Passenger(String name, String surname, int dateOfBirth){
-        this.name =name;
+    public Passenger(String name, String surname, Date dateOfBirth) {
+        this.name = name;
         this.surname = surname;
-        this.dateOfBirth =dateOfBirth;
-
-
-
+        this.dateOfBirth = dateOfBirth;
     }
 
 
@@ -56,11 +55,17 @@ public class Passenger {
         this.surname = surname;
     }
 
-    public int getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(int dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+
+    public String dateFormat() {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(dateOfBirth);
     }
 }

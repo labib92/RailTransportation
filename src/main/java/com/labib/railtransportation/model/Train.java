@@ -1,48 +1,42 @@
 package com.labib.railtransportation.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Embeddable
 public class Train {
 
     @Id
     @GeneratedValue
-    @Column(name = "train_number")
-    private int trainNumber;
+    @Column(name = "train_number_PK")
+    private int id;
 
-    @Column(name = "station_name")
-    private String stationName;
+    @Column(name = "follow_up_station")
+    private String route;
 
     @Column(name = "number_of_seats")
     private int numberOfSeats;
 
     public Train(){}
 
-    public Train( String stationName, int numberOfSeats) {
-        this.stationName = stationName;
+    public Train(String route, int numberOfSeats) {
+        this.route = route;
         this.numberOfSeats = numberOfSeats;
     }
 
-
-
-
-    public int getTrainNumber() {
-        return trainNumber;
+    public int getId() {
+        return id;
     }
 
-    public void setTrainNumber(int trainNumber) {
-        this.trainNumber = trainNumber;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getStationName() {
-        return stationName;
+    public String getRoute() {
+        return route;
     }
 
-    public void setStationName(String stationName) {
-        this.stationName = stationName;
+    public void setRoute(String route) {
+        this.route = route;
     }
 
     public int getNumberOfSeats() {

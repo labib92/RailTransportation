@@ -1,28 +1,25 @@
 package com.labib.railtransportation.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+
+import java.util.Date;
+
+@Embeddable
 public class Schedule {
-
     @Id
     @GeneratedValue
-    private  int id;
-
+    private int id;
     @Column
     private int trainNumber;
-
-
     @Column
-    private int time;
-
+    private Date time;
 
     public Schedule(){}
 
-    public Schedule(int trainNumber, int time) {
+    public Schedule(int trainNumber, Date time) {
         this.trainNumber = trainNumber;
         this.time = time;
     }
@@ -43,11 +40,17 @@ public class Schedule {
         this.trainNumber = trainNumber;
     }
 
-    public int getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(Date time) {
         this.time = time;
+    }
+
+
+    public String timeFormat() {
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        return dateFormat.format(time);
     }
 }

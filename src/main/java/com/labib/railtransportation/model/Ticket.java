@@ -11,17 +11,32 @@ public class Ticket {
     @GeneratedValue
     private int id;
 
-    @Column
-    private int trainNumber;
+    private Train train;
 
-    @Column
-    private String passanger;
+    private Passenger passenger;
 
-    public Ticket(){}
 
-    public Ticket(int trainNumber, String passanger) {
-        this.trainNumber = trainNumber;
-        this.passanger = passanger;
+    @Embedded
+    @JoinColumn(name = "train_FK")
+    public Train getTrain() {
+        return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
+    }
+
+    @Embedded
+    @JoinColumn(name = "passenger_FK")
+    public Passenger getPassenger() {
+        return passenger;
+    }
+
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
+    }
+
+    public Ticket() {
     }
 
     public int getId() {
@@ -33,20 +48,4 @@ public class Ticket {
     }
 
 
-    public int getTrainNumber() {
-        return trainNumber;
-    }
-
-    public void setTrainNumber(int trainNumber) {
-        this.trainNumber = trainNumber;
-    }
-
-
-    public String getPassanger() {
-        return passanger;
-    }
-
-    public void setPassanger(String passanger) {
-        this.passanger = passanger;
-    }
 }

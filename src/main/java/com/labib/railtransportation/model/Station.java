@@ -1,9 +1,6 @@
 package com.labib.railtransportation.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Station {
@@ -12,23 +9,32 @@ public class Station {
     @GeneratedValue
     private int id;
 
+    @Column(name = "name_of_station")
+    private String nameOfStation;
 
-    @Column
-    private int trainNumber;
+    private Schedule schedule;
+
+    @Embedded
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
 
     public Station(){}
 
-
-    public Station(int trainNumber) {
-        this.trainNumber = trainNumber;
+    public Station(String nameOfStation) {
+        this.nameOfStation = nameOfStation;
     }
 
-    public int getTrainNumber() {
-        return trainNumber;
+    public String getNameOfStation() {
+        return nameOfStation;
     }
 
-    public void setTrainNumber(int trainNumber) {
-        this.trainNumber = trainNumber;
+    public void setNameOfStation(String nameOfStation) {
+        this.nameOfStation = nameOfStation;
     }
 
     public int getId() {
