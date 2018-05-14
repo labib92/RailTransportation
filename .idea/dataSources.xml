@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="TestPersistenceUnit/Hibernate" uuid="fa998141-700b-478e-9014-128234a1660b">
+    <data-source source="LOCAL" name="TestPersistenceUnit/Hibernate" uuid="74f60d1b-8cba-407c-a43b-458a2328d591">
       <driver-ref>h2.unified</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml</remarks>
       <jdbc-driver>org.h2.Driver</jdbc-driver>
       <jdbc-url>jdbc:h2:./target/h2-2</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="default@localhost" uuid="e9c4855a-cdd3-492c-b318-fa0193a70025">
+      <driver-ref>h2.unified</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:tcp://localhost:9092/default</jdbc-url>
     </data-source>
   </component>
 </project>

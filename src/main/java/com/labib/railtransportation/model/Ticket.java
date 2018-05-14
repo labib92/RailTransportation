@@ -11,13 +11,20 @@ public class Ticket {
     @GeneratedValue
     private int id;
 
+    @ManyToOne
     private Train train;
 
+    @ManyToOne
     private Passenger passenger;
 
+    public Ticket() {
+    }
 
-    @Embedded
-    @JoinColumn(name = "train_FK")
+    public Ticket(Train train, Passenger passenger) {
+        this.train = train;
+        this.passenger = passenger;
+    }
+
     public Train getTrain() {
         return train;
     }
@@ -26,8 +33,6 @@ public class Ticket {
         this.train = train;
     }
 
-    @Embedded
-    @JoinColumn(name = "passenger_FK")
     public Passenger getPassenger() {
         return passenger;
     }
@@ -36,8 +41,6 @@ public class Ticket {
         this.passenger = passenger;
     }
 
-    public Ticket() {
-    }
 
     public int getId() {
         return id;

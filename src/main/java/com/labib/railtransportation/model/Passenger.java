@@ -5,7 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Embeddable
+@Entity
 public class Passenger {
     @Id
     @GeneratedValue

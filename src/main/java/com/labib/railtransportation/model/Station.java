@@ -1,6 +1,7 @@
 package com.labib.railtransportation.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Station {
@@ -12,18 +13,26 @@ public class Station {
     @Column(name = "name_of_station")
     private String nameOfStation;
 
-    private Schedule schedule;
+    @OneToMany
+    private List<Schedule> schedules;
 
-    @Embedded
-    public Schedule getSchedule() {
-        return schedule;
+
+    public Station() {
     }
 
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
+    public Station(String nameOfStation, List<Schedule> schedules) {
+        this.nameOfStation = nameOfStation;
+        this.schedules = schedules;
     }
 
-    public Station(){}
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
+    }
+
 
     public Station(String nameOfStation) {
         this.nameOfStation = nameOfStation;
@@ -44,4 +53,6 @@ public class Station {
     public void setId(int id) {
         this.id = id;
     }
+
+
 }

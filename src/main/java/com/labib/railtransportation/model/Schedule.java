@@ -1,27 +1,38 @@
 package com.labib.railtransportation.model;
 
+import sun.plugin.javascript.navig.LinkArray;
+
 import javax.persistence.*;
 
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 
 import java.util.Date;
+import java.util.List;
 
-@Embeddable
+@Entity
 public class Schedule {
     @Id
     @GeneratedValue
     private int id;
-    @Column
-    private int trainNumber;
+
     @Column
     private Date time;
 
+
+    @ManyToOne
+    private Station station;
+
+    @ManyToMany
+    @Column(name = "train number_FK")
+    private List<Train> trainNumber;
+
     public Schedule(){}
 
-    public Schedule(int trainNumber, Date time) {
-        this.trainNumber = trainNumber;
+    public Schedule(Station station, List<Train> trainNumber, Date time) {
         this.time = time;
+        this.station = station;
+        this.trainNumber = trainNumber;
     }
 
     public int getId() {
@@ -32,13 +43,6 @@ public class Schedule {
         this.id = id;
     }
 
-    public int getTrainNumber() {
-        return trainNumber;
-    }
-
-    public void setTrainNumber(int trainNumber) {
-        this.trainNumber = trainNumber;
-    }
 
     public Date getTime() {
         return time;
@@ -48,6 +52,21 @@ public class Schedule {
         this.time = time;
     }
 
+    public Station getStation() {
+        return station;
+    }
+
+    public void setStation(Station station) {
+        this.station = station;
+    }
+
+    public List<Train> getTrainNumber() {
+        return trainNumber;
+    }
+
+    public void setTrainNumber(List<Train> trainNumber) {
+        this.trainNumber = trainNumber;
+    }
 
     public String timeFormat() {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");

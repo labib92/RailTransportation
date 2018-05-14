@@ -1,14 +1,18 @@
 package com.labib.railtransportation.model;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Embeddable
+@Entity
 public class Train {
 
     @Id
     @GeneratedValue
-    @Column(name = "train_number_PK")
+    @Column
     private int id;
+
+    @Column
+    private String trainNumber;
 
     @Column(name = "follow_up_station")
     private String route;
@@ -16,11 +20,24 @@ public class Train {
     @Column(name = "number_of_seats")
     private int numberOfSeats;
 
+    @ManyToMany
+    private List<Schedule> schedule;
+
     public Train(){}
 
-    public Train(String route, int numberOfSeats) {
+    public Train(String route, int numberOfSeats, List<Schedule> schedule, String trainNumber) {
         this.route = route;
         this.numberOfSeats = numberOfSeats;
+        this.schedule = schedule;
+        this.trainNumber = trainNumber;
+    }
+
+    public List<Schedule> getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(List<Schedule> schedule) {
+        this.schedule = schedule;
     }
 
     public int getId() {
@@ -45,5 +62,13 @@ public class Train {
 
     public void setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
+    }
+
+    public String getTrainNumber() {
+        return trainNumber;
+    }
+
+    public void setTrainNumber(String trainNumber) {
+        this.trainNumber = trainNumber;
     }
 }
